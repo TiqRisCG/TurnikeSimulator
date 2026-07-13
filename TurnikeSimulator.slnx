@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="ConsoleClient/ConsoleClient.csproj" />
+  <Project Path="IdentityService/IdentityService.csproj" />
+  <Project Path="Orchestrator/Orchestrator.ApiService/Orchestrator.ApiService.csproj" />
+  <Project Path="Orchestrator/Orchestrator.AppHost/Orchestrator.AppHost.csproj" />
+  <Project Path="Orchestrator/Orchestrator.ServiceDefaults/Orchestrator.ServiceDefaults.csproj" />
+  <Project Path="Orchestrator/Orchestrator.Web/Orchestrator.Web.csproj" />
+</Solution>

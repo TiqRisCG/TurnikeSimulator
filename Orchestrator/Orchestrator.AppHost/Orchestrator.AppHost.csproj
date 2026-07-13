@@ -1,0 +1,16 @@
+<Project Sdk="Aspire.AppHost.Sdk/13.2.4">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UserSecretsId>aeede03b-0d72-44c9-9846-cfb27e5fa0f4</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Orchestrator.ApiService\Orchestrator.ApiService.csproj" />
+    <ProjectReference Include="..\Orchestrator.Web\Orchestrator.Web.csproj" />
+  </ItemGroup>
+
+</Project>
