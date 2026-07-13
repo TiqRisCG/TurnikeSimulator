@@ -23,7 +23,14 @@ public static class FakeDatabase
         new()
         {
             Code = "TEST999",
-            UserName = "Mehmet Kaya",
+            UserName = "Mehmet ",
+            IsActive = false
+        },
+
+         new()
+        {
+            Code = "TEST777",
+            UserName = "Ali ",
             IsActive = false
         }
     };

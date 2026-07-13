@@ -1,0 +1,6 @@
+POST https://localhost:7084/access
+Content-Type: application/json
+
+{
+    "code": "ABC123"
+}

@@ -2,7 +2,7 @@
 using Orchestrator.Models;
 
 namespace Orchestrator.Clients;
-//Bu sınıf , IdentityService ile iletişim kurmak için bir HTTP istemcisi sağlar.
+
 public class IdentityServiceClient
 {
     private readonly HttpClient _httpClient;
@@ -14,15 +14,31 @@ public class IdentityServiceClient
 
     public async Task<ValidationResponse?> ValidateAsync(string code)
     {
-        var request = new ValidationRequest
+        try
         {
-            Code = code
-        };
+            var request = new ValidationRequest
+            {
+                Code = code
+            };
 
-        var response = await _httpClient.PostAsJsonAsync("/validate", request);
+            var response = await _httpClient.PostAsJsonAsync("/validate", request);
 
-        response.EnsureSuccessStatusCode();
+            if (!response.IsSuccessStatusCode)
+            {
+                return null;
+            }
 
-        return await response.Content.ReadFromJsonAsync<ValidationResponse>();
+            return await response.Content.ReadFromJsonAsync<ValidationResponse>();
+        }
+        catch (HttpRequestException)
+        {
+            // IdentityService'e ulaşılamadı
+            return null;
+        }
+        catch (TaskCanceledException)
+        {
+            // İstek zaman aşımına uğradı
+            return null;
+        }
     }
 }
