@@ -1,12 +1,7 @@
-﻿namespace Orchestrator.Interfaces
+﻿public interface ILogService
 {
-    //log yazabilen servisler
-    public interface ILogService
-    {
-        void WriteLog(
-            string code,
-            string userName,
-            string result
-            );
-    }
+    Task WriteLogAsync(
+        string code,
+        string userName,
+        string result);
 }

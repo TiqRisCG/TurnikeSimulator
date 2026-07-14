@@ -1,5 +1,4 @@
 using Orchestrator.Clients;
-using Orchestrator.Interfaces;
 using Orchestrator.Models;
 using Orchestrator.Services;
 
@@ -22,6 +21,7 @@ builder.Services.AddHttpClient<IdentityServiceClient>((serviceProvider, client) 
     client.BaseAddress = new Uri(baseUrl);
     client.Timeout = TimeSpan.FromSeconds(5);
 });
+
 builder.Services.AddSingleton<ILogService, LogService>();
 
 var app = builder.Build();
@@ -36,38 +36,34 @@ app.MapPost("/access",
     {
         var result = await identityService.ValidateAsync(request.Code);
 
-
+        // IdentityService'e ulaşılamadı
         if (result == null)
         {
-            logService.WriteLog(
+            await logService.WriteLogAsync(
                 request.Code,
                 "-",
-                "SERVİS HATASI"
-            );
+                "SERVİS HATASI");
 
             return Results.Problem(
-                "Identity servisine ulaşılamadı."
-            );
+                "Identity servisine ulaşılamadı.");
         }
 
-
+        // Kart geçerli
         if (result.IsValid)
         {
-            logService.WriteLog(
+            await logService.WriteLogAsync(
                 request.Code,
                 result.UserName,
-                "BAŞARILI"
-            );
+                "BAŞARILI");
         }
+        // Kart geçersiz
         else
         {
-            logService.WriteLog(
+            await logService.WriteLogAsync(
                 request.Code,
                 "-",
-                "KART GEÇERSİZ"
-            );
+                "KART GEÇERSİZ");
         }
-
 
         return Results.Ok(result);
     });

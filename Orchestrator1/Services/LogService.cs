@@ -1,21 +1,17 @@
-﻿using Orchestrator.Interfaces;
-
+﻿using System.Threading.Tasks;
 namespace Orchestrator.Services;
 
-public class LogService : ILogService
+// LogService, log yazabilen bir servistir. ILogService arayüzünü uygular.
+public class LogService :  ILogService
 {
-    private readonly string _filePath =
-        "Logs/access.log";
+    private readonly string _filePath = "Logs/access.log";
 
-
-    public void WriteLog(
+    public async Task WriteLogAsync(
         string code,
         string userName,
         string result)
     {
-
         Directory.CreateDirectory("Logs");
-
 
         var log =
             $"""
@@ -26,10 +22,8 @@ public class LogService : ILogService
             --------------------------------
             """;
 
-
-        File.AppendAllText(
+        await File.AppendAllTextAsync(
             _filePath,
-            log + Environment.NewLine
-        );
+            log + Environment.NewLine);
     }
 }
