@@ -1,5 +1,5 @@
 using Orchestrator.Clients;
-using Orchestrator.Models;
+using Shared.Models;
 using Orchestrator.Services;
 
 var builder = WebApplication.CreateBuilder(args);

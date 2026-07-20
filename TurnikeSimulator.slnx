@@ -2,4 +2,5 @@
   <Project Path="ConsoleClient/ConsoleClient.csproj" />
   <Project Path="IdentityService/IdentityService.csproj" />
   <Project Path="Orchestrator1/Orchestrator.csproj" Id="283d6831-dac9-44c0-9b21-ea304b0de9a3" />
+  <Project Path="Shared/Shared.csproj" Id="2ed172ea-22e1-4faa-9a6c-0ac0c7497243" />
 </Solution>

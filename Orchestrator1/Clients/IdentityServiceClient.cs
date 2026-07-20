@@ -1,5 +1,5 @@
 ﻿using System.Net.Http.Json;
-using Orchestrator.Models;
+using Shared.Models;
 
 namespace Orchestrator.Clients;
 

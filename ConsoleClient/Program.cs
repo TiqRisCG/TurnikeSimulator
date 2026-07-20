@@ -1,5 +1,5 @@
 ﻿using System.Net.Http.Json;
-using ConsoleClient.Models;
+using Shared.Models;
 
 Console.WriteLine("QR Code Validation Client");
 Console.WriteLine();

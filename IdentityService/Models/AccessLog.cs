@@ -1,12 +1,14 @@
 ﻿namespace IdentityService.Models;
 
-public class QrCodeRecord
+public class AccessLog
 {
     public int Id { get; set; }
+
+    public DateTime AccessTime { get; set; }
 
     public string Code { get; set; } = string.Empty;
 
     public string UserName { get; set; } = string.Empty;
 
-    public bool IsActive { get; set; }
+    public string Result { get; set; } = string.Empty;
 }
