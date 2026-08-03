@@ -11,6 +11,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 var app = builder.Build();
 
+// Seed Data
 using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
@@ -20,9 +21,61 @@ using (var scope = app.Services.CreateScope())
     SeedData.Initialize(context);
 }
 
-// Test için ana sayfa
+// Ana Sayfa
 app.MapGet("/", () => "Identity Service çalışıyor.");
 
+
+// =====================================================
+// TÜM KARTLARI GETİR
+// GET /cards
+// =====================================================
+app.MapGet("/cards",
+    async (AppDbContext context) =>
+    {
+        var cards = await context.QrCodes.ToListAsync();
+
+        return Results.Ok(cards);
+    });
+
+// =====================================================
+// ID'YE GÖRE KART GETİR
+// GET /cards/{id}
+// =====================================================
+app.MapGet("/cards/{id:int}",
+    async (int id, AppDbContext context) =>
+    {
+        var card = await context.QrCodes
+            .FirstOrDefaultAsync(x => x.Id == id);
+
+        if (card is null)
+        {
+            return Results.NotFound(new
+            {
+                Message = "Kart bulunamadı."
+            });
+        }
+
+        return Results.Ok(card);
+    });
+// =====================================================
+// YENİ KART EKLE
+// POST /cards
+// =====================================================
+app.MapPost("/cards",
+    async (QrCodeRecord card, AppDbContext context) =>
+    {
+        context.QrCodes.Add(card);
+
+        await context.SaveChangesAsync();
+
+        return Results.Created($"/cards/{card.Id}", card);
+    });
+
+
+// =====================================================
+// QR KART DOĞRULAMA
+// POST /validate
+// =====================================================
 app.MapPost("/validate",
     async (ValidationRequest request, AppDbContext context) =>
     {

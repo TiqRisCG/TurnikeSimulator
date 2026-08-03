@@ -1,0 +1,14 @@
+# SQLite
+*.db
+*.db-shm
+*.db-wal
+
+# Logs
+Logs/
+
+# Build
+bin/
+obj/
+
+# Visual Studio
+.vs/

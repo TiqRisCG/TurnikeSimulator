@@ -1,6 +1,7 @@
 using Orchestrator.Clients;
-using Shared.Models;
+using Orchestrator.Interfaces;
 using Orchestrator.Services;
+using Shared.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
