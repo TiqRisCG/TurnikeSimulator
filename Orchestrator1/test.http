@@ -1,22 +1,46 @@
-### Tüm kartları getir
+### Turnike Doğrulama
+POST https://localhost:7084/access
+Content-Type: application/json
+
+{
+  "code": "ABC123"
+}
+
+###
+
+### Tüm Kartları Listele
 GET https://localhost:7057/cards
 
 ###
 
-### Id = 4 olan kartı getir
-GET https://localhost:7057/cards/4
+### Id'ye Göre Kart Getir
+GET https://localhost:7057/cards/1
 
 ###
 
-### Id = 4 olan kartı sil
-DELETE https://localhost:7057/cards/4
+### Yeni Kart Ekle
+POST https://localhost:7057/cards
+Content-Type: application/json
+
+{
+  "code": "DENEME12345",
+  "userName": "Görkem",
+  "isActive": true
+}
 
 ###
 
-### Silindikten sonra tekrar kontrol et
-GET https://localhost:7057/cards/4
+### Kart Güncelle
+PATCH https://localhost:7057/cards/1
+Content-Type: application/json
+
+{
+  "code": "ABC123",
+  "userName": "Ahmet Güncellendi",
+  "isActive": true
+}
 
 ###
 
-### Tüm kartları tekrar listele
-GET https://localhost:7057/cards
+### Kart Sil
+DELETE https://localhost:7057/cards/5
