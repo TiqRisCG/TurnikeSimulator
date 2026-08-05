@@ -1,6 +1,22 @@
-POST https://localhost:7084/access
-Content-Type: application/json
+### Tüm kartları getir
+GET https://localhost:7057/cards
 
-{
-    "code": "ABC123"
-}
+###
+
+### Id = 4 olan kartı getir
+GET https://localhost:7057/cards/4
+
+###
+
+### Id = 4 olan kartı sil
+DELETE https://localhost:7057/cards/4
+
+###
+
+### Silindikten sonra tekrar kontrol et
+GET https://localhost:7057/cards/4
+
+###
+
+### Tüm kartları tekrar listele
+GET https://localhost:7057/cards

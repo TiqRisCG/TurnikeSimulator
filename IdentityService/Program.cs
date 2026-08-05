@@ -71,6 +71,57 @@ app.MapPost("/cards",
         return Results.Created($"/cards/{card.Id}", card);
     });
 
+// =====================================================
+// KART GÜNCELLE
+// PATCH /cards/{id}
+// =====================================================
+app.MapPatch("/cards/{id:int}",
+    async (int id, QrCodeRecord updatedCard, AppDbContext context) =>
+    {
+        var card = await context.QrCodes
+            .FirstOrDefaultAsync(x => x.Id == id);
+
+        if (card is null)
+        {
+            return Results.NotFound(new
+            {
+                Message = "Kart bulunamadı."
+            });
+        }
+
+        card.Code = updatedCard.Code;
+        card.UserName = updatedCard.UserName;
+        card.IsActive = updatedCard.IsActive;
+
+        await context.SaveChangesAsync();
+
+        return Results.Ok(card);
+    });
+
+// =====================================================
+// KART SİL
+// DELETE /cards/{id}
+// =====================================================
+app.MapDelete("/cards/{id:int}",
+    async (int id, AppDbContext context) =>
+    {
+        var card = await context.QrCodes
+        .FirstOrDefaultAsync(x => x.Id == id);
+        if (card is null)
+        {
+            return Results.NotFound(new
+            {
+                Message = "Kart Bulunamadı."
+            });
+        }
+        context.QrCodes.Remove(card);
+        await context.SaveChangesAsync();
+        return Results.Ok(new
+        {
+            Message = "Kart Başarıyla Silindi"
+        });
+    }
+    );
 
 // =====================================================
 // QR KART DOĞRULAMA
