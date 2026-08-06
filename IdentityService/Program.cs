@@ -25,10 +25,10 @@ using (var scope = app.Services.CreateScope())
 app.MapGet("/", () => "Identity Service çalışıyor.");
 
 
-// =====================================================
+
 // TÜM KARTLARI GETİR
 // GET /cards
-// =====================================================
+
 app.MapGet("/cards",
     async (AppDbContext context) =>
     {
@@ -37,10 +37,10 @@ app.MapGet("/cards",
         return Results.Ok(cards);
     });
 
-// =====================================================
+
 // ID'YE GÖRE KART GETİR
 // GET /cards/{id}
-// =====================================================
+
 app.MapGet("/cards/{id:int}",
     async (int id, AppDbContext context) =>
     {
@@ -57,10 +57,10 @@ app.MapGet("/cards/{id:int}",
 
         return Results.Ok(card);
     });
-// =====================================================
+
 // YENİ KART EKLE
 // POST /cards
-// =====================================================
+
 app.MapPost("/cards",
     async (QrCodeRecord card, AppDbContext context) =>
     {
@@ -71,10 +71,9 @@ app.MapPost("/cards",
         return Results.Created($"/cards/{card.Id}", card);
     });
 
-// =====================================================
 // KART GÜNCELLE
 // PATCH /cards/{id}
-// =====================================================
+
 app.MapPatch("/cards/{id:int}",
     async (int id, QrCodeRecord updatedCard, AppDbContext context) =>
     {
@@ -98,10 +97,10 @@ app.MapPatch("/cards/{id:int}",
         return Results.Ok(card);
     });
 
-// =====================================================
+
 // KART SİL
 // DELETE /cards/{id}
-// =====================================================
+
 app.MapDelete("/cards/{id:int}",
     async (int id, AppDbContext context) =>
     {
@@ -123,10 +122,10 @@ app.MapDelete("/cards/{id:int}",
     }
     );
 
-// =====================================================
+
 // QR KART DOĞRULAMA
 // POST /validate
-// =====================================================
+
 app.MapPost("/validate",
     async (ValidationRequest request, AppDbContext context) =>
     {
