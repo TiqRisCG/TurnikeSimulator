@@ -13,4 +13,11 @@ public class AppDbContext : DbContext
     public DbSet<QrCodeRecord> QrCodes => Set<QrCodeRecord>();
 
     public DbSet<AccessLog> AccessLogs => Set<AccessLog>();
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<QrCodeRecord>()
+            .HasIndex(x => x.Code)
+            .IsUnique();
+    }
 }

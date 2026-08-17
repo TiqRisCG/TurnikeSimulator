@@ -40,7 +40,3 @@ Content-Type: application/json
   "isActive": true
 }
 
-###
-
-### Kart Sil
-DELETE https://localhost:7057/cards/5
