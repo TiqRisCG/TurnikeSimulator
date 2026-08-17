@@ -1,6 +1,42 @@
+### Turnike Doğrulama
 POST https://localhost:7084/access
 Content-Type: application/json
 
 {
-    "code": "ABC123"
+  "code": "ABC123"
 }
+
+###
+
+### Tüm Kartları Listele
+GET https://localhost:7057/cards
+
+###
+
+### Id'ye Göre Kart Getir
+GET https://localhost:7057/cards/1
+
+###
+
+### Yeni Kart Ekle
+POST https://localhost:7057/cards
+Content-Type: application/json
+
+{
+  "code": "DENEME12345",
+  "userName": "Görkem",
+  "isActive": true
+}
+
+###
+
+### Kart Güncelle
+PATCH https://localhost:7057/cards/1
+Content-Type: application/json
+
+{
+  "code": "ABC123",
+  "userName": "Ahmet Güncellendi",
+  "isActive": true
+}
+

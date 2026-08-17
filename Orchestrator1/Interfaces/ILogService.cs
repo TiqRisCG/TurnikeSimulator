@@ -1,4 +1,6 @@
-﻿public interface ILogService
+﻿namespace Orchestrator.Interfaces;
+
+public interface ILogService
 {
     Task WriteLogAsync(
         string code,
